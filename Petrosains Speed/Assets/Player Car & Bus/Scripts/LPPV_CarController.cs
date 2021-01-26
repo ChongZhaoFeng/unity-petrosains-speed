@@ -160,7 +160,7 @@ public class LPPV_CarController : MonoBehaviour {
 	{
 		if (speedText != null)
 		{
-			if(speedUnit == SpeedUnit.Imperial)
+			if(speedUnit == SpeedUnit.Metric)
 				speedText.text = ((int)CurrentSpeed).ToString () + imp;
 			else
 				speedText.text = ((int)CurrentSpeed).ToString () + met;
@@ -200,11 +200,30 @@ public class LPPV_CarController : MonoBehaviour {
 		Move (motor, steering, handBrakeInput);
 	}
 
+
+	 private IEnumerator WaitForSceneLoad() {
+     	yield return new WaitForSeconds(1);
+		 SceneManager.LoadScene("BlindSpot");
+     
+ }
+
+
+
+
 	 void OnCollisionEnter(Collision exampleCol) {
          if(exampleCol.collider.tag == "Wall")
          {
              //Replace 'Game Over' with your game over scene's name.
              SceneManager.LoadScene("BlindSpot");
+         }
+     }
+
+	 	 void OnTriggerEnter(Collider col) {
+         if(col.GetComponent<Collider>().tag == "Finish")
+         {
+             //Replace 'Game Over' with your game over scene's name.
+			 StartCoroutine(WaitForSceneLoad());
+             
          }
      }
 
