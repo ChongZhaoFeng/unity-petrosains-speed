@@ -5,23 +5,26 @@ using UnityEngine.SceneManagement;
 
 public class ui : MonoBehaviour
 {
-    
     public GameObject UI;
     // Start is called before the first frame update
 
 
     void Start(){
- 
+    
     }
+
 
     // Update is called once per frame
     void Update(){
+
+
 
     }
 
     public void close()
     {
         UI.SetActive(false);
+
     }
      
 }

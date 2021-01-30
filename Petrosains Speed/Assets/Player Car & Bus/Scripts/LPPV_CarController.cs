@@ -10,6 +10,12 @@ using UnityEngine.SceneManagement;
 
 public class LPPV_CarController : MonoBehaviour {
 
+	public static LPPV_CarController cc;
+
+	public float carSpeed;
+
+
+
 
 	public enum WheelType
 	{
@@ -70,6 +76,7 @@ public class LPPV_CarController : MonoBehaviour {
 
 	private void Start () 
 	{
+		cc = this;
 		_rgbd = GetComponent<Rigidbody> ();
 		if (centerOfMass != null && _rgbd != null)
 			_rgbd.centerOfMass = centerOfMass.localPosition;
@@ -153,6 +160,11 @@ public class LPPV_CarController : MonoBehaviour {
 				_rgbd.velocity = (topSpeed/3.6f) * _rgbd.velocity.normalized;
 			break;
 		}
+
+
+		carSpeed = speed;
+
+
 	}
 
 	private string imp = " MPH", met = " KPH";
@@ -165,6 +177,8 @@ public class LPPV_CarController : MonoBehaviour {
 			else
 				speedText.text = ((int)CurrentSpeed).ToString () + met;
 		}
+
+		
 	}
 	private void FixedUpdate()
 	{
@@ -198,14 +212,11 @@ public class LPPV_CarController : MonoBehaviour {
 		}
 		#endif
 		Move (motor, steering, handBrakeInput);
+
+		
 	}
 
 
-	 private IEnumerator WaitForSceneLoad() {
-     	yield return new WaitForSeconds(1);
-		 SceneManager.LoadScene("BlindSpot");
-     
- }
 
 
 
@@ -222,7 +233,7 @@ public class LPPV_CarController : MonoBehaviour {
          if(col.GetComponent<Collider>().tag == "Finish")
          {
              //Replace 'Game Over' with your game over scene's name.
-			 StartCoroutine(WaitForSceneLoad());
+			 SceneManager.LoadScene("Complete");
              
          }
      }
