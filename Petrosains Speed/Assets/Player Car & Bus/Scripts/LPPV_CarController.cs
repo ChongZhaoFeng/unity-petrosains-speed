@@ -11,10 +11,7 @@ using UnityEngine.SceneManagement;
 public class LPPV_CarController : MonoBehaviour {
 
 	public static LPPV_CarController cc;
-
 	public float carSpeed;
-
-
 
 
 	public enum WheelType
@@ -41,6 +38,7 @@ public class LPPV_CarController : MonoBehaviour {
 	[SerializeField] private float topSpeed = 140;
 	[SerializeField] private Transform centerOfMass;
 	[SerializeField] private Text speedText;
+	[SerializeField] private Text counterText;
 
 	#if UNITY_ANDROID || UNITY_IOS
 	[SerializeField] private LPPV_VButton accelerateButton, brakeButton, handBrakeButton;
@@ -178,6 +176,7 @@ public class LPPV_CarController : MonoBehaviour {
 				speedText.text = ((int)CurrentSpeed).ToString () + met;
 		}
 
+
 		
 	}
 	private void FixedUpdate()
@@ -226,16 +225,25 @@ public class LPPV_CarController : MonoBehaviour {
          {
              //Replace 'Game Over' with your game over scene's name.
              SceneManager.LoadScene("BlindSpot");
+
          }
      }
 
-	 	 void OnTriggerEnter(Collider col) {
+
+	void OnTriggerEnter(Collider col) {
          if(col.GetComponent<Collider>().tag == "Finish")
          {
              //Replace 'Game Over' with your game over scene's name.
 			 SceneManager.LoadScene("Complete");
+
              
          }
+
+		 
+
      }
+
+
+	
 
 }
