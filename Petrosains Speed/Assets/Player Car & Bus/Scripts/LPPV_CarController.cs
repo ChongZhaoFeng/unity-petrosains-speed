@@ -1,4 +1,4 @@
-﻿/*	
+/*	
  * This Script Controls the car!
  */
 using System.Collections;
@@ -215,16 +215,11 @@ public class LPPV_CarController : MonoBehaviour {
 		
 	}
 
-
-
-
-
-
 	 void OnCollisionEnter(Collision exampleCol) {
          if(exampleCol.collider.tag == "Wall")
          {
              //Replace 'Game Over' with your game over scene's name.
-             SceneManager.LoadScene("BlindSpot");
+             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 
          }
      }
@@ -238,6 +233,7 @@ public class LPPV_CarController : MonoBehaviour {
 
              
          }
+
 
 		 
 
