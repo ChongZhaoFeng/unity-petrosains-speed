@@ -1,100 +1,90 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
-using System.Globalization;
-using System.Threading;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class GameController : MonoBehaviour
 {
-    public static GameController instance;
-    public Text timeCounter, countdownText, feedbackText;
-    public bool gamePlaying { get; private set; }
+    public float milli;
+    public int sec;
+    public int min;
+
+    public string milliDisplay;
+    public string secDisplay;
+    public string minDisplay;
+
+    public Text time;
+    public Text countdown;
+
+    public GameObject startarea;
+
+    public bool start = false;
+    public GameObject canMove;
+
+    public string[] time_store;
+
     
-    public int countdownTime;
-    private float startTime, elapsedTime;
-    TimeSpan timePlaying;
 
-    private void Awake()
+    public IEnumerator CountDown()
     {
-        instance = this;
-    }
-    // Start is called before the first frame update
-    void Start()
-    {
-
-        gamePlaying = false;
-
-        feedbackText.gameObject.SetActive(false);
-
-        StartCoroutine(CountdownToStart());
-
-
-    }
-    private void BeginGame()
-    {
-        gamePlaying = true;
-        
-
-        startTime = Time.time;
-
+        countdown.text = "5";
+        yield return new WaitForSeconds(1f);
+        countdown.text = "4";
+        yield return new WaitForSeconds(1f);
+        countdown.text = "3";
+        yield return new WaitForSeconds(1f);
+        countdown.text = "2";
+        yield return new WaitForSeconds(1f);
+        countdown.text = "1";
+        yield return new WaitForSeconds(1f);
+        startarea.SetActive(false);
+        countdown.text = "GO!";
+        start = true;
+        yield return new WaitForSeconds(0.5f);
+        countdown.text = " ";
     }
 
-
-
+    private void Start()
+    {
+        StartCoroutine(CountDown());
+        canMove.GetComponent<LPPV_CarController>().enabled = false;
+    }
 
     private void Update()
     {
-        
-
-        if (gamePlaying)
+        if (start)
         {
-            elapsedTime = Time.time - startTime;
-            timePlaying = TimeSpan.FromSeconds(elapsedTime);
-
-            string timePlayingStr = "Time: " + timePlaying.ToString("mm':'ss'.'ff");
-            timeCounter.text = timePlayingStr;
-
-           
+            canMove.GetComponent<LPPV_CarController>().enabled = true;
+            milli += Time.deltaTime * 100;
         }
-
-        if (Input.GetKeyDown(KeyCode.W))
+        if (milli >= 100)
         {
-            gamePlaying = false;
-            countdownText.gameObject.SetActive(false);
-            feedbackText.gameObject.SetActive(true);
-           
+            milli = 0;
+            sec += 1;
         }
-
-
-
-    }
-
-  
-     
-
-IEnumerator CountdownToStart()
-    {
-        while (countdownTime > 0)
+        if (sec >= 60)
         {
-            countdownText.text = countdownTime.ToString();
-
-            yield return new WaitForSeconds(1f);
-
-            countdownTime--;
+            sec = 0;
+            min += 1;
         }
+        milliDisplay = "" + milli.ToString("F1");
 
-        BeginGame();
-
-        countdownText.text = "GO!";
-
-        yield return new WaitForSeconds(1f);
-
-        
-        countdownText.gameObject.SetActive(false);
-
-       
-
+        if(sec < 10)
+        {
+            secDisplay = "0" + sec.ToString();
+        }
+        else
+        {
+            secDisplay = sec.ToString();
+        }
+        if (min < 10)
+        {
+            minDisplay = "0" + min.ToString();
+        }
+        else
+        {
+            minDisplay = min.ToString();
+        }
+        time.text = minDisplay + ":" + secDisplay + ":" + milliDisplay;
     }
 }
