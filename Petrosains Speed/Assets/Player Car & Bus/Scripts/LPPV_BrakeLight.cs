@@ -20,7 +20,7 @@ public class LPPV_BrakeLight : MonoBehaviour {
 	{
 		if (_cc != null) 
 		{
-			if (_cc.Deccelerating || _cc.HandBrake)
+			if (_cc.isBreaking)
 				_mr.enabled = true;
 			else
 				_mr.enabled = false;

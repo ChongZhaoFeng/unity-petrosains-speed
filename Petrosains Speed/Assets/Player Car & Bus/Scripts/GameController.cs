@@ -27,20 +27,13 @@ public class GameController : MonoBehaviour
 
     public IEnumerator CountDown()
     {
-        countdown.text = "5";
-        yield return new WaitForSeconds(1f);
-        countdown.text = "4";
-        yield return new WaitForSeconds(1f);
-        countdown.text = "3";
-        yield return new WaitForSeconds(1f);
-        countdown.text = "2";
-        yield return new WaitForSeconds(1f);
-        countdown.text = "1";
-        yield return new WaitForSeconds(1f);
+        countdown.text = " ";
+        int wait_time = Random.Range(3, 6);
+        yield return new WaitForSeconds(wait_time);
         startarea.SetActive(false);
         countdown.text = "GO!";
         start = true;
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1f);
         countdown.text = " ";
     }
 
@@ -86,5 +79,10 @@ public class GameController : MonoBehaviour
             minDisplay = min.ToString();
         }
         time.text = minDisplay + ":" + secDisplay + ":" + milliDisplay;
+
+        if(Input.GetKey(KeyCode.W))
+        {
+            start = false;
+        }
     }
 }
