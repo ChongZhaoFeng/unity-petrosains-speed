@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class ui : MonoBehaviour
 {
     public GameObject UI;
+    public GameObject UI2;
     // Start is called before the first frame update
 
 
@@ -24,7 +25,13 @@ public class ui : MonoBehaviour
     public void close()
     {
         UI.SetActive(false);
+        
 
+    }
+
+    public void back()
+    {
+        UI2.SetActive(true);
     }
      
 }
