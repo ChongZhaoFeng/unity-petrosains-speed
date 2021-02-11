@@ -15,9 +15,10 @@ public class CarEngine : MonoBehaviour
     public WheelCollider WheelFR;
     public WheelCollider WheelRL;
     public WheelCollider WheelRR;
-
     private List<Transform> nodes;
     private int currentNode = 0;
+
+
 
     // Start is called before the first frame update
     private void Start()
@@ -114,10 +115,9 @@ public class CarEngine : MonoBehaviour
         if (col.GetComponent<Collider>().tag == "Finish")
         {
             isBraking = true;
-
-
+            
         }
-
+        
 
 
     }

@@ -13,43 +13,62 @@ public class GameController : MonoBehaviour
     public string secDisplay;
     public string minDisplay;
 
+    public Text reactText;
+
     public Text time;
     public Text countdown;
 
     public GameObject startarea;
 
-    public bool start = false;
+    public bool start = false; 
+    public bool start2 = false;
     public GameObject canMove;
 
     public string[] time_store;
 
+    public GameObject carMove;
+    public GameObject carMove1;
     
+    public GameObject stopSign;
 
     public IEnumerator CountDown()
     {
-        countdown.text = " ";
-        int wait_time = Random.Range(3, 6);
-        yield return new WaitForSeconds(wait_time);
-        startarea.SetActive(false);
-        countdown.text = "GO!";
-        start = true;
-        yield return new WaitForSeconds(1f);
-        countdown.text = " ";
+            countdown.text = " ";
+            int wait_time = Random.Range(3, 6);
+            yield return new WaitForSeconds(wait_time);
+            startarea.SetActive(false);
+            countdown.text = "GO!";
+            start = true;
+            yield return new WaitForSeconds(1f);
+            countdown.text = " ";
     }
 
     private void Start()
     {
-        StartCoroutine(CountDown());
+        
         canMove.GetComponent<LPPV_CarController>().enabled = false;
+        carMove.GetComponent<CarEngine>().enabled = false;
+        carMove1.GetComponent<CarEngine>().enabled = false;
+
+        
     }
 
-    private void Update()
+    public void Update()
     {
+        
         if (start)
         {
             canMove.GetComponent<LPPV_CarController>().enabled = true;
             milli += Time.deltaTime * 100;
+
+            if (Input.GetKey(KeyCode.W))
+            {
+                start = false;
+            }
+
+          
         }
+
         if (milli >= 100)
         {
             milli = 0;
@@ -62,7 +81,7 @@ public class GameController : MonoBehaviour
         }
         milliDisplay = "" + milli.ToString("F1");
 
-        if(sec < 10)
+        if (sec < 10)
         {
             secDisplay = "0" + sec.ToString();
         }
@@ -80,9 +99,83 @@ public class GameController : MonoBehaviour
         }
         time.text = minDisplay + ":" + secDisplay + ":" + milliDisplay;
 
-        if(Input.GetKey(KeyCode.W))
+        ////////////////////////////////////////////////////////////////////////////////
+
+        if (start2)
         {
-            start = false;
+            
+            milli += Time.deltaTime * 100;
+
+
+            if (Input.GetKey(KeyCode.Space))
+            {
+                start2 = false;
+                canMove.GetComponent<LPPV_CarController>().enabled = false;
+
+            }
+
+            if (milli >= 100)
+            {
+                milli = 0;
+                sec += 1;
+            }
+            if (sec >= 60)
+            {
+                sec = 0;
+                min += 1;
+            }
+            milliDisplay = "" + milli.ToString("F1");
+
+            if (sec < 10)
+            {
+                secDisplay = "0" + sec.ToString();
+            }
+            else
+            {
+                secDisplay = sec.ToString();
+            }
+            if (min < 10)
+            {
+                minDisplay = "0" + min.ToString();
+            }
+            else
+            {
+                minDisplay = min.ToString();
+            }
+            time.text = minDisplay + ":" + secDisplay + ":" + milliDisplay;
+
+
         }
+
+
+
+
+    }
+
+    void OnTriggerEnter(Collider col)
+    {
+        if (col.GetComponent<Collider>().tag == "Wall")
+        {
+            carMove.GetComponent<CarEngine>().enabled = true;
+            carMove1.GetComponent<CarEngine>().enabled = true;
+
+            reactText.text = "Reaction two";
+
+            milli = 0;
+            min = 0;
+            sec = 0;
+
+        }
+
+        if (col.GetComponent<Collider>().tag == "Wall2")
+        {
+            stopSign.SetActive(true);
+            start2 = true;
+          
+
+        }
+        
+
+
     }
 }
