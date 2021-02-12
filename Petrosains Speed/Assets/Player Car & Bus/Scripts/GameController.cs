@@ -28,9 +28,15 @@ public class GameController : MonoBehaviour
     public bool pGame = false;
     public bool cGame = false;
     public bool gGame = false;
-    
+
+
 
     public string[] time_store;
+
+    float timer = 0;
+    float timeToWait = 0.5f;
+    bool checkingTime;
+    bool timerDone;
 
 
     public IEnumerator CountDown()
@@ -108,6 +114,12 @@ public class GameController : MonoBehaviour
             cGame = true;
         }
 
+        if (pGame == true)
+        {
+            Time.timeScale = 0f;
+            cGame = true;
+        }
+
         if (cGame == true)
         {
             if (Input.GetKey(KeyCode.C))
@@ -123,7 +135,6 @@ public class GameController : MonoBehaviour
         }
 
 
-       
 
         if (start2)
         {
@@ -174,6 +185,8 @@ public class GameController : MonoBehaviour
 
 
     }
+
+
 
     void OnTriggerEnter(Collider col)
     {
