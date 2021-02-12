@@ -217,36 +217,6 @@ public class LPPV_CarController : MonoBehaviour {
 
 
 
-
-	 void OnCollisionEnter(Collision exampleCol) {
-         if(exampleCol.collider.tag == "Wall")
-         {
-             //Replace 'Game Over' with your game over scene's name.
-			SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-
-         }
-     }
-
-
-
-
-
-
-	void OnTriggerEnter(Collider col) {
-         if(col.GetComponent<Collider>().tag == "Finish")
-         {
-             //Replace 'Game Over' with your game over scene's name.
-			 SceneManager.LoadScene("Complete");
-
-             
-         }
-
-
-		 
-
-     }
-
-
 	
 
 }

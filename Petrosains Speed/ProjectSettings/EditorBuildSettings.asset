@@ -15,6 +15,9 @@ EditorBuildSettings:
     path: Assets/Scenes/ReactionTime.unity
     guid: 47fbccbb0dd917f459d19557474e008a
   - enabled: 1
+    path: Assets/Scenes/bs_difficulty.unity
+    guid: b94a4024bad8cb343a2161c1500f6ab0
+  - enabled: 1
     path: Assets/Scenes/BlindSpotS1.unity
     guid: d5a21bfecaccf034b8a7d0fed97d51d2
   - enabled: 1
@@ -29,6 +32,21 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/BlindSpotS5.unity
     guid: 2c4124629fd39834ab3c0dc11aeec3aa
+  - enabled: 1
+    path: Assets/Scenes/BlindSpotS1_Hard.unity
+    guid: 428eddf28f65b4340bdee9eeb545d6f5
+  - enabled: 1
+    path: Assets/Scenes/BlindSpotS2_Hard.unity
+    guid: a4b34539fecebf54db41f12cc8900e45
+  - enabled: 1
+    path: Assets/Scenes/BlindSpotS3_Hard.unity
+    guid: 32a7835c044783e4ca918f11c0ef161d
+  - enabled: 1
+    path: Assets/Scenes/BlindSpotS4_Hard.unity
+    guid: 409517f98aefded49a115a0a2c5dba61
+  - enabled: 1
+    path: Assets/Scenes/BlindSpotS5_Hard.unity
+    guid: f72dfb31b4eb8d843862c5e683d86643
   - enabled: 1
     path: Assets/Scenes/Complete.unity
     guid: 332452520b0f4ea42ae5fb67e103d775
