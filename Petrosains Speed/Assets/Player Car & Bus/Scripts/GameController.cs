@@ -66,53 +66,52 @@ public class GameController : MonoBehaviour
                 start = false;
             }
 
-          
+            if (milli >= 100)
+            {
+                milli = 0;
+                sec += 1;
+            }
+            if (sec >= 60)
+            {
+                sec = 0;
+                min += 1;
+            }
+            milliDisplay = "" + milli.ToString("F1");
+
+            if (sec < 10)
+            {
+                secDisplay = "0" + sec.ToString();
+            }
+            else
+            {
+                secDisplay = sec.ToString();
+            }
+            if (min < 10)
+            {
+                minDisplay = "0" + min.ToString();
+            }
+            else
+            {
+                minDisplay = min.ToString();
+            }
+            time.text = minDisplay + ":" + secDisplay + ":" + milliDisplay;
         }
 
-        if (milli >= 100)
-        {
-            milli = 0;
-            sec += 1;
-        }
-        if (sec >= 60)
-        {
-            sec = 0;
-            min += 1;
-        }
-        milliDisplay = "" + milli.ToString("F1");
-
-        if (sec < 10)
-        {
-            secDisplay = "0" + sec.ToString();
-        }
-        else
-        {
-            secDisplay = sec.ToString();
-        }
-        if (min < 10)
-        {
-            minDisplay = "0" + min.ToString();
-        }
-        else
-        {
-            minDisplay = min.ToString();
-        }
-        time.text = minDisplay + ":" + secDisplay + ":" + milliDisplay;
 
         ////////////////////////////////////////////////////////////////////////////////
 
+        if (Input.GetKey(KeyCode.E))
+        {
+            start2 = false;
+            canMove.GetComponent<Rigidbody>().velocity = Vector3.zero;
+            canMove.GetComponent<LPPV_CarController>().enabled = false;
+            Time.timeScale = 0f;
+        }
         if (start2)
         {
             
             milli += Time.deltaTime * 100;
 
-
-            if (Input.GetKey(KeyCode.Space))
-            {
-                start2 = false;
-                canMove.GetComponent<LPPV_CarController>().enabled = false;
-
-            }
 
             if (milli >= 100)
             {
@@ -171,8 +170,6 @@ public class GameController : MonoBehaviour
         {
             stopSign.SetActive(true);
             start2 = true;
-          
-
         }
         
 

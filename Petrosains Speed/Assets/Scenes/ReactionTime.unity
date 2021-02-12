@@ -14680,7 +14680,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2104473863}
+      - m_Target: {fileID: 2104473873}
         m_MethodName: QuitGame
         m_Mode: 1
         m_Arguments:
@@ -23046,8 +23046,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1141061798}
   m_LocalRotation: {x: -0, y: -0.70329386, z: -0, w: 0.71089935}
-  m_LocalPosition: {x: 115.01, y: 1.68, z: -93.016}
-  m_LocalScale: {x: 9.721482, y: 2.6726, z: 14.346}
+  m_LocalPosition: {x: 121.28, y: 1.68, z: -93.016}
+  m_LocalScale: {x: 9.721482, y: 2.6726, z: 0.26586318}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 284
@@ -40162,6 +40162,7 @@ GameObject:
   - component: {fileID: 2104473870}
   - component: {fileID: 2104473871}
   - component: {fileID: 2104473872}
+  - component: {fileID: 2104473873}
   m_Layer: 5
   m_Name: Canvas (1)
   m_TagString: Untagged
@@ -40182,7 +40183,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pauseMenuUI: {fileID: 1444182993}
-  inGameUI: {fileID: 0}
+  inGameUI: {fileID: 855559039}
 --- !u!114 &2104473864
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -40356,6 +40357,20 @@ MonoBehaviour:
   go3: {fileID: 1849971490}
   go4: {fileID: 305980253}
   go5: {fileID: 305980253}
+--- !u!114 &2104473873
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2104473862}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4d19c12185508548a2a3faad7fa864f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pauseMenuUI1: {fileID: 1444182993}
+  inGameUI1: {fileID: 855559039}
 --- !u!1001 &2130507230
 PrefabInstance:
   m_ObjectHideFlags: 0

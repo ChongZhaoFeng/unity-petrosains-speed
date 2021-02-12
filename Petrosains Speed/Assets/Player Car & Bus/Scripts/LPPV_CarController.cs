@@ -61,12 +61,12 @@ public class LPPV_CarController : MonoBehaviour
 
     public void StopMotor()
     {
-        frontLeftWheelCollider.motorTorque = verticalInput * 0;
-        frontRightWheelCollider.motorTorque = verticalInput * 0;
+        frontLeftWheelCollider.motorTorque = 0;
+        frontRightWheelCollider.motorTorque = 0;
 
     }
 
-    private void UpdateWheels()
+    public void UpdateWheels()
     {
         UpdateWheelPos(frontLeftWheelCollider, frontLeftWheelTransform);
         UpdateWheelPos(frontRightWheelCollider, frontRightWheelTransform);
