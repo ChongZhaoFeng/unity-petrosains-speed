@@ -14,7 +14,6 @@ public class GameController : MonoBehaviour
     public string minDisplay;
 
     public Text reactText;
-
     public Text time;
     public Text countdown;
 
@@ -27,11 +26,12 @@ public class GameController : MonoBehaviour
     public bool start = false; 
     public bool start2 = false;
     public bool pGame = false;
+    public bool cGame = false;
+    public bool gGame = false;
     
 
     public string[] time_store;
 
-    
 
     public IEnumerator CountDown()
     {
@@ -55,7 +55,7 @@ public class GameController : MonoBehaviour
         
     }
 
-    public void Update()
+    void Update()
     {
         
         if (start)
@@ -105,7 +105,24 @@ public class GameController : MonoBehaviour
         if (pGame == true)
         {
             Time.timeScale = 0f;
+            cGame = true;
         }
+
+        if (cGame == true)
+        {
+            if (Input.GetKey(KeyCode.C))
+            {
+                gGame = true;
+
+            }
+        }
+
+        if (gGame == true)
+        {
+            Time.timeScale = 1f;
+        }
+
+
        
 
         if (start2)
@@ -117,10 +134,7 @@ public class GameController : MonoBehaviour
             {
                 start2 = false;
                 pGame = true;
-                canMove.GetComponent<LPPV_CarController>().enabled = false;
-                canMove.GetComponent<Rigidbody>().velocity = Vector3.zero;
-          
-            
+                
             }
 
             if (milli >= 100)
@@ -170,10 +184,8 @@ public class GameController : MonoBehaviour
 
             reactText.text = "Reaction two";
 
-            milli = 0;
-            min = 0;
-            sec = 0;
-            
+            time.text = "00:00:00";
+
         }
 
         if (col.GetComponent<Collider>().tag == "Wall2")

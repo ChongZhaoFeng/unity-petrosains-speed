@@ -6074,13 +6074,15 @@ MonoBehaviour:
   time: {fileID: 1602737098}
   countdown: {fileID: 408796457}
   startarea: {fileID: 973935355}
-  start: 0
-  start2: 0
-  canMove: {fileID: 305980253}
-  time_store: []
   carMove: {fileID: 1483896510}
   carMove1: {fileID: 220554805}
+  canMove: {fileID: 305980253}
   stopSign: {fileID: 1028845300}
+  start: 0
+  start2: 0
+  pGame: 0
+  cGame: 0
+  time_store: []
 --- !u!65 &305980263
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -20290,7 +20292,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.0004921, y: 241.17}
+  m_AnchoredPosition: {x: -0.0004921, y: 202}
   m_SizeDelta: {x: 287.54944, y: 237.73083}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1028845302
@@ -31394,14 +31396,14 @@ RectTransform:
   m_GameObject: {fileID: 1509073229}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 7, y: 7, z: 7}
   m_Children: []
   m_Father: {fileID: 855559040}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 179, y: -221}
+  m_AnchoredPosition: {x: -18, y: -221}
   m_SizeDelta: {x: 253.4324, y: 210.68852}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1509073231
@@ -31423,7 +31425,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: bd842208ad6dc4a42a04fb8a692a74b7, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5dbc77234567b0548a523a442c6e29c8, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -40345,13 +40347,15 @@ MonoBehaviour:
   time: {fileID: 1602737098}
   countdown: {fileID: 408796457}
   startarea: {fileID: 973935355}
-  start: 0
-  start2: 0
-  canMove: {fileID: 305980253}
-  time_store: []
   carMove: {fileID: 1483896510}
   carMove1: {fileID: 220554805}
+  canMove: {fileID: 305980253}
   stopSign: {fileID: 1028845300}
+  start: 0
+  start2: 0
+  pGame: 0
+  cGame: 0
+  time_store: []
   go1: {fileID: 1160139934}
   go2: {fileID: 1369664839}
   go3: {fileID: 1849971490}
