@@ -19,17 +19,19 @@ public class GameController : MonoBehaviour
     public Text countdown;
 
     public GameObject startarea;
+    public GameObject carMove;
+    public GameObject carMove1;
+    public GameObject canMove;
+    public GameObject stopSign;
 
     public bool start = false; 
     public bool start2 = false;
-    public GameObject canMove;
+    public bool pGame = false;
+    
 
     public string[] time_store;
 
-    public GameObject carMove;
-    public GameObject carMove1;
     
-    public GameObject stopSign;
 
     public IEnumerator CountDown()
     {
@@ -98,20 +100,28 @@ public class GameController : MonoBehaviour
         }
 
 
-        ////////////////////////////////////////////////////////////////////////////////
+        ////////////////////////////////////////////////////////////////////////////////////
 
-        if (Input.GetKey(KeyCode.E))
+        if (pGame == true)
         {
-            start2 = false;
-            canMove.GetComponent<Rigidbody>().velocity = Vector3.zero;
-            canMove.GetComponent<LPPV_CarController>().enabled = false;
             Time.timeScale = 0f;
         }
+       
+
         if (start2)
         {
             
             milli += Time.deltaTime * 100;
 
+            if (Input.GetKey(KeyCode.Space))
+            {
+                start2 = false;
+                pGame = true;
+                canMove.GetComponent<LPPV_CarController>().enabled = false;
+                canMove.GetComponent<Rigidbody>().velocity = Vector3.zero;
+          
+            
+            }
 
             if (milli >= 100)
             {
@@ -163,16 +173,20 @@ public class GameController : MonoBehaviour
             milli = 0;
             min = 0;
             sec = 0;
-
+            
         }
 
         if (col.GetComponent<Collider>().tag == "Wall2")
         {
             stopSign.SetActive(true);
             start2 = true;
+
+
         }
         
-
+        
 
     }
+
+  
 }
