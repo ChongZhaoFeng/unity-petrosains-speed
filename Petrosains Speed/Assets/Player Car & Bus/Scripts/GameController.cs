@@ -25,18 +25,20 @@ public class GameController : MonoBehaviour
 
     public bool start = false; 
     public bool start2 = false;
+    public bool start3 = false;
+    public bool alreadyPlayed = false;
+
+
     public bool pGame = false;
     public bool cGame = false;
     public bool gGame = false;
+    
 
 
 
     public string[] time_store;
 
-    float timer = 0;
-    float timeToWait = 0.5f;
-    bool checkingTime;
-    bool timerDone;
+    public AudioSource CarHorn;
 
 
     public IEnumerator CountDown()
@@ -57,6 +59,7 @@ public class GameController : MonoBehaviour
         canMove.GetComponent<LPPV_CarController>().enabled = false;
         carMove.GetComponent<CarEngine>().enabled = false;
         carMove1.GetComponent<CarEngine>().enabled = false;
+        CarHorn = GetComponent<AudioSource>();
 
         
     }
@@ -136,6 +139,8 @@ public class GameController : MonoBehaviour
             carMove1.SetActive(false);
             start2 = false;
             time.text = "00:00:00";
+            reactText.text = "Reaction three";
+
 
             Time.timeScale = 1f;
             
@@ -188,6 +193,46 @@ public class GameController : MonoBehaviour
 
         }
 
+        if (start3)
+        {
+
+            milli += Time.deltaTime * 100;
+
+
+            if (milli >= 100)
+            {
+                milli = 0;
+                sec += 1;
+            }
+            if (sec >= 60)
+            {
+                sec = 0;
+                min += 1;
+            }
+            milliDisplay = "" + milli.ToString("F1");
+
+            if (sec < 10)
+            {
+                secDisplay = "0" + sec.ToString();
+            }
+            else
+            {
+                secDisplay = sec.ToString();
+            }
+            if (min < 10)
+            {
+                minDisplay = "0" + min.ToString();
+            }
+            else
+            {
+                minDisplay = min.ToString();
+            }
+            time.text = minDisplay + ":" + secDisplay + ":" + milliDisplay;
+
+
+        }
+
+
 
 
 
@@ -215,8 +260,21 @@ public class GameController : MonoBehaviour
 
 
         }
-        
-        
+
+        if (col.GetComponent<Collider>().tag == "Wall3")
+        {
+            if (!alreadyPlayed)
+            {
+                CarHorn.Play();
+                alreadyPlayed = true;
+            }
+            
+            start3 = true;
+
+
+        }
+
+
 
     }
 
