@@ -131,7 +131,14 @@ public class GameController : MonoBehaviour
 
         if (gGame == true)
         {
+            stopSign.SetActive(false);
+            carMove.SetActive(false);
+            carMove1.SetActive(false);
+            start2 = false;
+            time.text = "00:00:00";
+
             Time.timeScale = 1f;
+            
         }
 
 
