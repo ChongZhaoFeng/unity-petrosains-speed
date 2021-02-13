@@ -23,7 +23,7 @@ public class carSound : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        pitchFromCar = (LPPV_CarController.cc.carSpeed)/5;
+        pitchFromCar = (bs_CarController.cc.carSpeed)/5;
 
         
         if(pitchFromCar < minPitch)

@@ -3,16 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(MeshRenderer))]
-public class LPPV_BrakeLight : MonoBehaviour {
+public class bs_BrakeLight : MonoBehaviour {
 
 	private MeshRenderer _mr;
-	private LPPV_CarController _cc;
+	private bs_CarController _cc;
 	// Use this for initialization
 	void Start () 
 	{
 		_mr = GetComponent<MeshRenderer> ();
 		_mr.enabled = false;
-		_cc = GameObject.FindObjectOfType<LPPV_CarController> ();
+		_cc = GameObject.FindObjectOfType<bs_CarController> ();
 	}
 	
 	// Update is called once per frame

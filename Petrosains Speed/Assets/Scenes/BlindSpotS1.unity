@@ -31053,7 +31053,7 @@ MonoBehaviour:
   speedUnit: 0
   topSpeed: 40
   centerOfMass: {fileID: 1176605159}
-  speedText: {fileID: 0}
+  speedText: {fileID: 1768211132}
   counterText: {fileID: 0}
   Accelerating: 0
   Deccelerating: 0

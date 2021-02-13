@@ -8,9 +8,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class LPPV_CarController : MonoBehaviour {
+public class bs_CarController : MonoBehaviour {
 
-	public static LPPV_CarController cc;
+	public static bs_CarController cc;
 	public float carSpeed;
 
 
