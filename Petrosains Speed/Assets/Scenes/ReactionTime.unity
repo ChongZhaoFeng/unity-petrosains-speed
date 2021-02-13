@@ -6177,6 +6177,7 @@ MonoBehaviour:
   start: 0
   start2: 0
   start3: 0
+  alreadyPlayed: 0
   pGame: 0
   cGame: 0
   gGame: 0
@@ -40562,6 +40563,7 @@ MonoBehaviour:
   start: 0
   start2: 0
   start3: 0
+  alreadyPlayed: 0
   pGame: 0
   cGame: 0
   gGame: 0
@@ -56840,7 +56842,7 @@ PrefabInstance:
     - target: {fileID: 8420078267536076260, guid: 3d5603cf226759940a08c583d310a486,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 86.21
+      value: 85.77
       objectReference: {fileID: 0}
     - target: {fileID: 8420078267536076260, guid: 3d5603cf226759940a08c583d310a486,
         type: 3}
