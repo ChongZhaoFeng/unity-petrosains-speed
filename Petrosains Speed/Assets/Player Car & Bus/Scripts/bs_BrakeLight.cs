@@ -20,7 +20,7 @@ public class bs_BrakeLight : MonoBehaviour {
 	{
 		if (_cc != null) 
 		{
-			if (_cc.isBreaking)
+			if (_cc.Deccelerating || _cc.HandBrake)
 				_mr.enabled = true;
 			else
 				_mr.enabled = false;

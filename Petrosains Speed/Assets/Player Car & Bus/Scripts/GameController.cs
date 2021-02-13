@@ -1,277 +1,70 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
+using System.Threading;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class GameController : MonoBehaviour
 {
-    public float milli;
-    public int sec;
-    public int min;
-
-    public string milliDisplay;
-    public string secDisplay;
-    public string minDisplay;
-
-    public Text reactText;
-    public Text time;
-    public Text countdown;
-
-    public GameObject startarea;
-    public GameObject carMove;
-    public GameObject carMove1;
-    public GameObject canMove;
-    public GameObject stopSign;
-
-    public bool start = false; 
-    public bool start2 = false;
-    public bool start3 = false;
-    public bool alreadyPlayed = false;
-
-
-    public bool pGame = false;
-    public bool cGame = false;
-    public bool gGame = false;
+    public static GameController instance;
+    public Text timeCounter, countdownText, feedbackText;
+    public bool gamePlaying { get; private set; }
     
+    public int countdownTime;
+    private float startTime, elapsedTime;
+    TimeSpan timePlaying;
 
-
-
-    public string[] time_store;
-
-    public AudioSource CarHorn;
-
-
-    public IEnumerator CountDown()
+    private void Awake()
     {
-            countdown.text = " ";
-            int wait_time = Random.Range(3, 6);
-            yield return new WaitForSeconds(wait_time);
-            startarea.SetActive(false);
-            countdown.text = "GO!";
-            start = true;
-            yield return new WaitForSeconds(1f);
-            countdown.text = " ";
+        instance = this;
     }
-
-    private void Start()
+    // Start is called before the first frame update
+    void Start()
     {
-        
-        canMove.GetComponent<LPPV_CarController>().enabled = false;
-        carMove.GetComponent<CarEngine>().enabled = false;
-        carMove1.GetComponent<CarEngine>().enabled = false;
-        CarHorn = GetComponent<AudioSource>();
 
-        
+        gamePlaying = false;
+
+        feedbackText.gameObject.SetActive(false);
+
+        StartCoroutine(CountdownToStart());
+
+
     }
-
-    void Update()
+    private void BeginGame()
     {
+        gamePlaying = true;
         
-        if (start)
-        {
-            canMove.GetComponent<LPPV_CarController>().enabled = true;
-            milli += Time.deltaTime * 100;
 
-            if (Input.GetKey(KeyCode.W))
-            {
-                start = false;
-            }
-
-            if (milli >= 100)
-            {
-                milli = 0;
-                sec += 1;
-            }
-            if (sec >= 60)
-            {
-                sec = 0;
-                min += 1;
-            }
-            milliDisplay = "" + milli.ToString("F1");
-
-            if (sec < 10)
-            {
-                secDisplay = "0" + sec.ToString();
-            }
-            else
-            {
-                secDisplay = sec.ToString();
-            }
-            if (min < 10)
-            {
-                minDisplay = "0" + min.ToString();
-            }
-            else
-            {
-                minDisplay = min.ToString();
-            }
-            time.text = minDisplay + ":" + secDisplay + ":" + milliDisplay;
-        }
-
-
-        ////////////////////////////////////////////////////////////////////////////////////
-
-        if (pGame == true)
-        {
-            Time.timeScale = 0f;
-            cGame = true;
-        }
-
-        if (pGame == true)
-        {
-            Time.timeScale = 0f;
-            cGame = true;
-        }
-
-        if (cGame == true)
-        {
-            if (Input.GetKey(KeyCode.C))
-            {
-                gGame = true;
-
-            }
-        }
-
-        if (gGame == true)
-        {
-            stopSign.SetActive(false);
-            carMove.SetActive(false);
-            carMove1.SetActive(false);
-            start2 = false;
-            time.text = "00:00:00";
-            reactText.text = "Reaction three";
-
-
-            Time.timeScale = 1f;
-            
-        }
-
-
-
-        if (start2)
-        {
-            
-            milli += Time.deltaTime * 100;
-
-            if (Input.GetKey(KeyCode.Space))
-            {
-                start2 = false;
-                pGame = true;
-                
-            }
-
-            if (milli >= 100)
-            {
-                milli = 0;
-                sec += 1;
-            }
-            if (sec >= 60)
-            {
-                sec = 0;
-                min += 1;
-            }
-            milliDisplay = "" + milli.ToString("F1");
-
-            if (sec < 10)
-            {
-                secDisplay = "0" + sec.ToString();
-            }
-            else
-            {
-                secDisplay = sec.ToString();
-            }
-            if (min < 10)
-            {
-                minDisplay = "0" + min.ToString();
-            }
-            else
-            {
-                minDisplay = min.ToString();
-            }
-            time.text = minDisplay + ":" + secDisplay + ":" + milliDisplay;
-
-
-        }
-
-        if (start3)
-        {
-
-            milli += Time.deltaTime * 100;
-
-
-            if (milli >= 100)
-            {
-                milli = 0;
-                sec += 1;
-            }
-            if (sec >= 60)
-            {
-                sec = 0;
-                min += 1;
-            }
-            milliDisplay = "" + milli.ToString("F1");
-
-            if (sec < 10)
-            {
-                secDisplay = "0" + sec.ToString();
-            }
-            else
-            {
-                secDisplay = sec.ToString();
-            }
-            if (min < 10)
-            {
-                minDisplay = "0" + min.ToString();
-            }
-            else
-            {
-                minDisplay = min.ToString();
-            }
-            time.text = minDisplay + ":" + secDisplay + ":" + milliDisplay;
-
-
-        }
-
-
-
-
+        startTime = Time.time;
 
     }
 
 
 
-    void OnTriggerEnter(Collider col)
+
+    private void Update()
     {
-        if (col.GetComponent<Collider>().tag == "Wall")
+        
+
+        if (gamePlaying)
         {
-            carMove.GetComponent<CarEngine>().enabled = true;
-            carMove1.GetComponent<CarEngine>().enabled = true;
+            elapsedTime = Time.time - startTime;
+            timePlaying = TimeSpan.FromSeconds(elapsedTime);
 
-            reactText.text = "Reaction two";
+            string timePlayingStr = "Time: " + timePlaying.ToString("mm':'ss'.'ff");
+            timeCounter.text = timePlayingStr;
 
-            time.text = "00:00:00";
-
+           
         }
 
-        if (col.GetComponent<Collider>().tag == "Wall2")
+        if (Input.GetKeyDown(KeyCode.W))
         {
-            stopSign.SetActive(true);
-            start2 = true;
-
-
-        }
-
-        if (col.GetComponent<Collider>().tag == "Wall3")
-        {
-            if (!alreadyPlayed)
-            {
-                CarHorn.Play();
-                alreadyPlayed = true;
-            }
-            
-            start3 = true;
-
-
+            gamePlaying = false;
+            countdownText.gameObject.SetActive(false);
+            feedbackText.gameObject.SetActive(true);
+           
         }
 
 
@@ -279,4 +72,29 @@ public class GameController : MonoBehaviour
     }
 
   
+     
+
+IEnumerator CountdownToStart()
+    {
+        while (countdownTime > 0)
+        {
+            countdownText.text = countdownTime.ToString();
+
+            yield return new WaitForSeconds(1f);
+
+            countdownTime--;
+        }
+
+        BeginGame();
+
+        countdownText.text = "GO!";
+
+        yield return new WaitForSeconds(1f);
+
+        
+        countdownText.gameObject.SetActive(false);
+
+       
+
+    }
 }
