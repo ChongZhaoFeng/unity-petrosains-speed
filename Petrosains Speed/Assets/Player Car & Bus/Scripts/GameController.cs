@@ -54,6 +54,8 @@ public class GameController : MonoBehaviour
     public bool start5 = false;
     public bool alreadyPlayed = false;
     public bool alreadyPlayed1 = false;
+    public bool alreadyPlayed2 = false;
+   
 
 
     public bool pGame = false;
@@ -64,7 +66,7 @@ public class GameController : MonoBehaviour
     public bool pGame1 = false;
     public bool cGame1 = false;
     public bool gGame1 = false;
-
+    
     public bool pGame2 = false;
     public bool cGame2 = false;
     public bool gGame2 = false;
@@ -82,6 +84,8 @@ public class GameController : MonoBehaviour
 
     public AudioSource CarHorn;
     public AudioSource tyreNoise;
+    public AudioSource missionSound;
+    public AudioSource bling;
 
 
     public IEnumerator CountDown()
@@ -156,6 +160,7 @@ public class GameController : MonoBehaviour
 
         if (pGame == true)
         {
+            
             missionBringBackAlive.SetActive(true);
             Time.timeScale = 0f;
             cGame = true;
@@ -166,6 +171,7 @@ public class GameController : MonoBehaviour
         {
             if (Input.GetKey(KeyCode.C))
             {
+                
                 gGame = true;
 
             }
@@ -173,6 +179,7 @@ public class GameController : MonoBehaviour
 
         if (gGame == true)
         {
+            
             missionBringBackAlive.SetActive(false);
             missionHorn.SetActive(true);
             stopSign.SetActive(false);
@@ -182,7 +189,7 @@ public class GameController : MonoBehaviour
             start2 = false;
             Time.timeScale = 1f;
 
-            
+         
         }
 
 
@@ -487,9 +494,14 @@ public class GameController : MonoBehaviour
 
             reactText.text = "Reaction two";
             Mission1.SetActive(true);
-
+            
 
             time.text = "00:00:00";
+            if (!alreadyPlayed2)
+            {
+                missionSound.Play();
+                alreadyPlayed2 = true;
+            }
 
         }
 
@@ -540,7 +552,7 @@ public class GameController : MonoBehaviour
 
         if (col.GetComponent<Collider>().tag == "Wall4")
         {
-            
+            bling.Play();
             reactText.text = "Reaction three";
             time.text = "00:00:00";
         }
