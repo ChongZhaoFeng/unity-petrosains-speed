@@ -30,6 +30,7 @@ public class GameController : MonoBehaviour
     public bool start2 = false;
     public bool start3 = false;
     public bool start4 = false;
+    public bool start5 = false;
     public bool alreadyPlayed = false;
     public bool alreadyPlayed1 = false;
 
@@ -46,6 +47,10 @@ public class GameController : MonoBehaviour
     public bool pGame2 = false;
     public bool cGame2 = false;
     public bool gGame2 = false;
+
+    public bool pGame3 = false;
+    public bool cGame3 = false;
+    public bool gGame3 = false;
 
 
 
@@ -316,8 +321,6 @@ public class GameController : MonoBehaviour
         }
 
 
-
-
         if (start4)
         {
 
@@ -331,6 +334,82 @@ public class GameController : MonoBehaviour
             }
 
 
+
+            if (milli >= 100)
+            {
+                milli = 0;
+                sec += 1;
+            }
+            if (sec >= 60)
+            {
+                sec = 0;
+                min += 1;
+            }
+            milliDisplay = "" + milli.ToString("F1");
+
+            if (sec < 10)
+            {
+                secDisplay = "0" + sec.ToString();
+            }
+            else
+            {
+                secDisplay = sec.ToString();
+            }
+            if (min < 10)
+            {
+                minDisplay = "0" + min.ToString();
+            }
+            else
+            {
+                minDisplay = min.ToString();
+            }
+            time.text = minDisplay + ":" + secDisplay + ":" + milliDisplay;
+
+
+        }
+        ////////////////////////////////////////////////////////////////////////////////
+
+        if (pGame3 == true)
+        {
+            goodJob.SetActive(true);
+            Time.timeScale = 0f;
+            cGame3 = true;
+        }
+
+
+        if (cGame3 == true)
+        {
+            if (Input.GetKey(KeyCode.C))
+            {
+                gGame3 = true;
+
+            }
+        }
+
+        if (gGame3 == true)
+        {
+            
+            goodJob.SetActive(false);
+           
+            start5 = false;
+            Time.timeScale = 1f;
+
+
+        }
+
+        if (start5)
+        {
+            stopSign.SetActive(true);
+            milli += Time.deltaTime * 100;
+
+            if (Input.GetKey(KeyCode.Space))
+            {
+                stopSign.SetActive(false);
+                
+                start5 = false;
+                pGame3 = true;
+
+            }
 
             if (milli >= 100)
             {
@@ -418,6 +497,14 @@ public class GameController : MonoBehaviour
             barrier2.SetActive(true);
 
             start4 = true;
+
+
+        }
+
+        if (col.GetComponent<Collider>().tag == "Wall8")
+        {
+            
+            start5 = true;
 
 
         }
