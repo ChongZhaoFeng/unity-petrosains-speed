@@ -9,6 +9,22 @@ public class GameController : MonoBehaviour
     public int sec;
     public int min;
 
+    public float milli1;
+    public int sec1;
+    public int min1;
+
+    public float milli2;
+    public int sec2;
+    public int min2;
+
+    public float milli3;
+    public int sec3;
+    public int min3;
+
+    public float milli4;
+    public int sec4;
+    public int min4;
+
     public string milliDisplay;
     public string secDisplay;
     public string minDisplay;
@@ -25,6 +41,11 @@ public class GameController : MonoBehaviour
     public GameObject goodJob;
     public GameObject barrier1;
     public GameObject barrier2;
+    public GameObject Mission1;
+    public GameObject missionBringBackAlive;
+    public GameObject missionHorn;
+    public GameObject missionskrtskrt;
+    public GameObject missionCross;
 
     public bool start = false; 
     public bool start2 = false;
@@ -135,6 +156,7 @@ public class GameController : MonoBehaviour
 
         if (pGame == true)
         {
+            missionBringBackAlive.SetActive(true);
             Time.timeScale = 0f;
             cGame = true;
         }
@@ -151,6 +173,8 @@ public class GameController : MonoBehaviour
 
         if (gGame == true)
         {
+            missionBringBackAlive.SetActive(false);
+            missionHorn.SetActive(true);
             stopSign.SetActive(false);
             goodJob.SetActive(false);
             carMove.SetActive(false);
@@ -161,14 +185,11 @@ public class GameController : MonoBehaviour
             
         }
 
-        
-
-
 
         if (start2)
         {
             
-            milli += Time.deltaTime * 100;
+            milli1 += Time.deltaTime * 100;
 
             if (Input.GetKey(KeyCode.Space))
             {
@@ -179,33 +200,33 @@ public class GameController : MonoBehaviour
                 
             }
 
-            if (milli >= 100)
+            if (milli1 >= 100)
             {
-                milli = 0;
-                sec += 1;
+                milli1 = 0;
+                sec1 += 1;
             }
-            if (sec >= 60)
+            if (sec1 >= 60)
             {
-                sec = 0;
-                min += 1;
+                sec1 = 0;
+                min1 += 1;
             }
-            milliDisplay = "" + milli.ToString("F1");
+            milliDisplay = "" + milli1.ToString("F1");
 
-            if (sec < 10)
+            if (sec1 < 10)
             {
-                secDisplay = "0" + sec.ToString();
+                secDisplay = "0" + sec1.ToString();
             }
             else
             {
-                secDisplay = sec.ToString();
+                secDisplay = sec1.ToString();
             }
-            if (min < 10)
+            if (min1 < 10)
             {
-                minDisplay = "0" + min.ToString();
+                minDisplay = "0" + min1.ToString();
             }
             else
             {
-                minDisplay = min.ToString();
+                minDisplay = min1.ToString();
             }
             time.text = minDisplay + ":" + secDisplay + ":" + milliDisplay;
 
@@ -216,7 +237,7 @@ public class GameController : MonoBehaviour
 
         if (pGame1 == true)
         {
-            
+            missionBringBackAlive.SetActive(true);
             goodJob.SetActive(true);
             Time.timeScale = 0f;
             cGame1 = true;
@@ -228,13 +249,14 @@ public class GameController : MonoBehaviour
             if (Input.GetKey(KeyCode.C))
             {
                 gGame1 = true;
-                barrier1.SetActive(false);
+                
             }
         }
 
         if (gGame1 == true)
         {
-            
+            missionskrtskrt.SetActive(true);
+            barrier1.SetActive(false);
             start3 = false;
             goodJob.SetActive(false);
             
@@ -248,7 +270,7 @@ public class GameController : MonoBehaviour
         if (start3)
         {
 
-            milli += Time.deltaTime * 100;
+            milli2 += Time.deltaTime * 100;
 
             if (Input.GetKey(KeyCode.Space))
             {
@@ -259,33 +281,33 @@ public class GameController : MonoBehaviour
 
 
 
-            if (milli >= 100)
+            if (milli2 >= 100)
             {
-                milli = 0;
-                sec += 1;
+                milli2 = 0;
+                sec2 += 1;
             }
-            if (sec >= 60)
+            if (sec2 >= 60)
             {
-                sec = 0;
-                min += 1;
+                sec2 = 0;
+                min2 += 1;
             }
-            milliDisplay = "" + milli.ToString("F1");
+            milliDisplay = "" + milli2.ToString("F1");
 
-            if (sec < 10)
+            if (sec2 < 10)
             {
-                secDisplay = "0" + sec.ToString();
+                secDisplay = "0" + sec2.ToString();
             }
             else
             {
-                secDisplay = sec.ToString();
+                secDisplay = sec2.ToString();
             }
-            if (min < 10)
+            if (min2 < 10)
             {
-                minDisplay = "0" + min.ToString();
+                minDisplay = "0" + min2.ToString();
             }
             else
             {
-                minDisplay = min.ToString();
+                minDisplay = min2.ToString();
             }
             time.text = minDisplay + ":" + secDisplay + ":" + milliDisplay;
 
@@ -296,7 +318,7 @@ public class GameController : MonoBehaviour
 
         if (pGame2 == true)
         {
-
+            missionskrtskrt.SetActive(false);
             goodJob.SetActive(true);
             Time.timeScale = 0f;
             cGame2 = true;
@@ -313,6 +335,10 @@ public class GameController : MonoBehaviour
 
         if (gGame2 == true)
         {
+            Mission1.SetActive(true);
+            missionBringBackAlive.SetActive(false);
+            missionHorn.SetActive(false);
+            missionskrtskrt.SetActive(false);
             barrier2.SetActive(false);
             start4 = false;
             goodJob.SetActive(false);
@@ -324,7 +350,7 @@ public class GameController : MonoBehaviour
         if (start4)
         {
 
-            milli += Time.deltaTime * 100;
+            milli3 += Time.deltaTime * 100;
 
             if (Input.GetKey(KeyCode.Space))
             {
@@ -335,33 +361,33 @@ public class GameController : MonoBehaviour
 
 
 
-            if (milli >= 100)
+            if (milli3 >= 100)
             {
-                milli = 0;
-                sec += 1;
+                milli3 = 0;
+                sec3 += 1;
             }
-            if (sec >= 60)
+            if (sec3 >= 60)
             {
-                sec = 0;
-                min += 1;
+                sec3 = 0;
+                min3 += 1;
             }
-            milliDisplay = "" + milli.ToString("F1");
+            milliDisplay = "" + milli3.ToString("F1");
 
-            if (sec < 10)
+            if (sec3 < 10)
             {
-                secDisplay = "0" + sec.ToString();
+                secDisplay = "0" + sec3.ToString();
             }
             else
             {
-                secDisplay = sec.ToString();
+                secDisplay = sec3.ToString();
             }
-            if (min < 10)
+            if (min3 < 10)
             {
-                minDisplay = "0" + min.ToString();
+                minDisplay = "0" + min3.ToString();
             }
             else
             {
-                minDisplay = min.ToString();
+                minDisplay = min3.ToString();
             }
             time.text = minDisplay + ":" + secDisplay + ":" + milliDisplay;
 
@@ -400,7 +426,8 @@ public class GameController : MonoBehaviour
         if (start5)
         {
             stopSign.SetActive(true);
-            milli += Time.deltaTime * 100;
+
+            milli4 += Time.deltaTime * 100;
 
             if (Input.GetKey(KeyCode.Space))
             {
@@ -411,33 +438,33 @@ public class GameController : MonoBehaviour
 
             }
 
-            if (milli >= 100)
+            if (milli4 >= 100)
             {
-                milli = 0;
-                sec += 1;
+                milli4 = 0;
+                sec4 += 1;
             }
-            if (sec >= 60)
+            if (sec4 >= 60)
             {
-                sec = 0;
-                min += 1;
+                sec4 = 0;
+                min4 += 1;
             }
-            milliDisplay = "" + milli.ToString("F1");
+            milliDisplay = "" + milli4.ToString("F1");
 
-            if (sec < 10)
+            if (sec4 < 10)
             {
-                secDisplay = "0" + sec.ToString();
+                secDisplay = "0" + sec4.ToString();
             }
             else
             {
-                secDisplay = sec.ToString();
+                secDisplay = sec4.ToString();
             }
-            if (min < 10)
+            if (min4 < 10)
             {
-                minDisplay = "0" + min.ToString();
+                minDisplay = "0" + min4.ToString();
             }
             else
             {
-                minDisplay = min.ToString();
+                minDisplay = min4.ToString();
             }
             time.text = minDisplay + ":" + secDisplay + ":" + milliDisplay;
 
@@ -459,6 +486,8 @@ public class GameController : MonoBehaviour
             carMove1.GetComponent<CarEngine>().enabled = true;
 
             reactText.text = "Reaction two";
+            Mission1.SetActive(true);
+
 
             time.text = "00:00:00";
 
@@ -511,6 +540,7 @@ public class GameController : MonoBehaviour
 
         if (col.GetComponent<Collider>().tag == "Wall4")
         {
+            
             reactText.text = "Reaction three";
             time.text = "00:00:00";
         }

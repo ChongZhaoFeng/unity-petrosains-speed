@@ -11,6 +11,8 @@ TagManager:
   - Wall5
   - Wall6
   - Wall7
+  - Wall8
+  - Wall9
   layers:
   - Default
   - TransparentFX
