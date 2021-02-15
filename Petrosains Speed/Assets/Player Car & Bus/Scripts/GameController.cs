@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+
 
 public class GameController : MonoBehaviour
 {
@@ -32,6 +34,11 @@ public class GameController : MonoBehaviour
     public Text reactText;
     public Text time;
     public Text countdown;
+    public Text react1;
+    public Text react2;
+    public Text react3;
+    public Text react4;
+    public Text react5;
 
     public GameObject startarea;
     public GameObject carMove;
@@ -46,6 +53,16 @@ public class GameController : MonoBehaviour
     public GameObject missionHorn;
     public GameObject missionskrtskrt;
     public GameObject missionCross;
+    public GameObject retryMenu;
+    public GameObject retryCollider;
+    public GameObject retryCollider2;
+    public GameObject Congrats;
+    public GameObject Distract;
+    public GameObject React11;
+    public GameObject React22;
+    public GameObject React33;
+    public GameObject React44;
+    public GameObject React55;
 
     public GameObject block1;
     public GameObject block2;
@@ -68,6 +85,8 @@ public class GameController : MonoBehaviour
     public bool pGame = false;
     public bool cGame = false;
     public bool gGame = false;
+    public bool rgame = false;
+    public bool wgame = false;
     
 
     public bool pGame1 = false;
@@ -92,7 +111,7 @@ public class GameController : MonoBehaviour
     public AudioSource CarHorn;
     public AudioSource tyreNoise;
     public AudioSource missionSound;
-    public AudioSource bling;
+    
 
 
     public IEnumerator CountDown()
@@ -121,6 +140,12 @@ public class GameController : MonoBehaviour
     void Update()
     {
         
+        if (wgame == true)
+        {
+            Time.timeScale = 0f;
+            Distract.SetActive(true);
+        }
+
         if (start)
         {
             canMove.GetComponent<LPPV_CarController>().enabled = true;
@@ -141,6 +166,10 @@ public class GameController : MonoBehaviour
                 sec = 0;
                 min += 1;
             }
+            if (sec >= 5.2)
+            {
+                wgame = true;
+            }
             milliDisplay = "" + milli.ToString("F1");
 
             if (sec < 10)
@@ -160,6 +189,7 @@ public class GameController : MonoBehaviour
                 minDisplay = min.ToString();
             }
             time.text = minDisplay + ":" + secDisplay + ":" + milliDisplay;
+            react1.text = minDisplay + ":" + secDisplay + ":" + milliDisplay;
         }
 
 
@@ -244,6 +274,7 @@ public class GameController : MonoBehaviour
             }
             time.text = minDisplay + ":" + secDisplay + ":" + milliDisplay;
 
+            react2.text = minDisplay + ":" + secDisplay + ":" + milliDisplay;
 
         }
 
@@ -269,6 +300,7 @@ public class GameController : MonoBehaviour
 
         if (gGame1 == true)
         {
+            retryCollider.SetActive(false);
             missionskrtskrt.SetActive(true);
             barrier1.SetActive(false);
             start3 = false;
@@ -324,6 +356,8 @@ public class GameController : MonoBehaviour
                 minDisplay = min2.ToString();
             }
             time.text = minDisplay + ":" + secDisplay + ":" + milliDisplay;
+            react3.text = minDisplay + ":" + secDisplay + ":" + milliDisplay;
+
 
 
         }
@@ -349,6 +383,7 @@ public class GameController : MonoBehaviour
 
         if (gGame2 == true)
         {
+            retryCollider2.SetActive(false);
             Mission1.SetActive(true);
             missionBringBackAlive.SetActive(false);
             missionHorn.SetActive(false);
@@ -404,6 +439,8 @@ public class GameController : MonoBehaviour
                 minDisplay = min3.ToString();
             }
             time.text = minDisplay + ":" + secDisplay + ":" + milliDisplay;
+            react4.text = minDisplay + ":" + secDisplay + ":" + milliDisplay;
+
 
 
         }
@@ -411,31 +448,18 @@ public class GameController : MonoBehaviour
 
         if (pGame3 == true)
         {
+            Congrats.SetActive(true);
+            React11.SetActive(true);
+            React22.SetActive(true);
+            React33.SetActive(true);
+            React44.SetActive(true);
+            React55.SetActive(true);
+
             goodJob.SetActive(true);
             Time.timeScale = 0f;
-            cGame3 = true;
-        }
-
-
-        if (cGame3 == true)
-        {
-            if (Input.GetKey(KeyCode.C))
-            {
-                gGame3 = true;
-
-            }
-        }
-
-        if (gGame3 == true)
-        {
             
-            goodJob.SetActive(false);
-           
-            start5 = false;
-            Time.timeScale = 1f;
-
-
         }
+
 
         if (start5)
         {
@@ -481,8 +505,17 @@ public class GameController : MonoBehaviour
                 minDisplay = min4.ToString();
             }
             time.text = minDisplay + ":" + secDisplay + ":" + milliDisplay;
+            react5.text = minDisplay + ":" + secDisplay + ":" + milliDisplay;
 
 
+
+        }
+
+        if (rgame == true)
+        {
+           
+            Time.timeScale = 0f;
+           
         }
 
 
@@ -559,7 +592,7 @@ public class GameController : MonoBehaviour
 
         if (col.GetComponent<Collider>().tag == "Wall4")
         {
-            bling.Play();
+            
             reactText.text = "Reaction three";
             time.text = "00:00:00";
         }
@@ -597,6 +630,41 @@ public class GameController : MonoBehaviour
         {
             block5.SetActive(true);
         }
+
+        if (col.GetComponent<Collider>().tag == "Car1")
+        {
+            retryMenu.SetActive(true);
+            rgame = true;
+        }
+
+        if (col.GetComponent<Collider>().tag == "Car2")
+        {
+            
+            retryMenu.SetActive(true);
+            rgame = true;
+        }
+
+        if (col.GetComponent<Collider>().tag == "warning1")
+        {
+            retryMenu.SetActive(true);
+            rgame = true;
+        }
+
+        if (col.GetComponent<Collider>().tag == "warning2")
+        {
+
+            retryMenu.SetActive(true);
+            rgame = true;
+        }
+
+        if (col.GetComponent<Collider>().tag == "Wall9")
+        {
+
+            retryMenu.SetActive(true);
+            rgame = true;
+        }
+
+       
 
     }
 

@@ -18,6 +18,10 @@ TagManager:
   - wall114
   - wall115
   - wall116
+  - Car1
+  - Car2
+  - warning1
+  - warning2
   layers:
   - Default
   - TransparentFX
