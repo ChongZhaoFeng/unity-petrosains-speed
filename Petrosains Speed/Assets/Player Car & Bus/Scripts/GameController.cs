@@ -58,6 +58,9 @@ public class GameController : MonoBehaviour
     public GameObject retryCollider2;
     public GameObject Congrats;
     public GameObject Distract;
+    public GameObject arrow2;
+    public GameObject arrow3;
+
     public GameObject React11;
     public GameObject React22;
     public GameObject React33;
@@ -79,8 +82,9 @@ public class GameController : MonoBehaviour
     public bool alreadyPlayed = false;
     public bool alreadyPlayed1 = false;
     public bool alreadyPlayed2 = false;
-   
-
+    public bool alreadyPlayed3 = false;
+    public bool alreadyPlayed4 = false;
+    public bool alreadyPlayed5 = false;
 
     public bool pGame = false;
     public bool cGame = false;
@@ -101,13 +105,6 @@ public class GameController : MonoBehaviour
     public bool cGame3 = false;
     public bool gGame3 = false;
 
-
-
-
-
-
-    public string[] time_store;
-
     public AudioSource CarHorn;
     public AudioSource tyreNoise;
     public AudioSource missionSound;
@@ -124,6 +121,7 @@ public class GameController : MonoBehaviour
             start = true;
             yield return new WaitForSeconds(1f);
             countdown.text = " ";
+            arrow3.SetActive(true);
     }
 
     private void Start()
@@ -216,7 +214,6 @@ public class GameController : MonoBehaviour
 
         if (gGame == true)
         {
-            
             missionBringBackAlive.SetActive(false);
             missionHorn.SetActive(true);
             stopSign.SetActive(false);
@@ -549,12 +546,14 @@ public class GameController : MonoBehaviour
         {
             stopSign.SetActive(true);
             start2 = true;
-
+            arrow2.SetActive(false);
 
         }
 
         if (col.GetComponent<Collider>().tag == "Wall3")
         {
+            arrow3.SetActive(false);
+
             if (!alreadyPlayed)
             {
                 CarHorn.Play();
@@ -569,6 +568,8 @@ public class GameController : MonoBehaviour
 
         if (col.GetComponent<Collider>().tag == "Wall6")
         {
+            arrow3.SetActive(false);
+
             if (!alreadyPlayed1)
             {
                 tyreNoise.Play();
@@ -592,13 +593,15 @@ public class GameController : MonoBehaviour
 
         if (col.GetComponent<Collider>().tag == "Wall4")
         {
-            
+            arrow3.SetActive(true);
             reactText.text = "Reaction three";
             time.text = "00:00:00";
         }
 
         if (col.GetComponent<Collider>().tag == "Wall5")
         {
+            arrow3.SetActive(true);
+            arrow3.SetActive(true);
             reactText.text = "Reaction four";
             time.text = "00:00:00";
         }
@@ -611,23 +614,46 @@ public class GameController : MonoBehaviour
 
         if (col.GetComponent<Collider>().tag == "wall112")
         {
+            arrow2.SetActive(true);
+            arrow3.SetActive(false);
             block1.SetActive(true);
         }
 
         if (col.GetComponent<Collider>().tag == "wall113")
         {
             block2 .SetActive(true);
+            if (!alreadyPlayed3)
+            {
+                missionSound.Play();
+                alreadyPlayed3 = true;
+            }
+
         }
         if (col.GetComponent<Collider>().tag == "wall114")
         {
+            
+
             block3.SetActive(true);
+            if (!alreadyPlayed4)
+            {
+                missionSound.Play();
+                alreadyPlayed4 = true;
+            }
         }
         if (col.GetComponent<Collider>().tag == "wall115")
         {
+            arrow3.SetActive(true);
+
             block4.SetActive(true);
+            if (!alreadyPlayed5)
+            {
+                missionSound.Play();
+                alreadyPlayed5 = true;
+            }
         }
         if (col.GetComponent<Collider>().tag == "wall116")
         {
+            arrow3.SetActive(false);
             block5.SetActive(true);
         }
 
