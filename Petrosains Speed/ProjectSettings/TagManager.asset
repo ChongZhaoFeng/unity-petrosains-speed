@@ -22,6 +22,10 @@ TagManager:
   - Car2
   - warning1
   - warning2
+  - trigger1
+  - trigger0
+  - trigger2
+  - trigger3
   layers:
   - Default
   - TransparentFX
