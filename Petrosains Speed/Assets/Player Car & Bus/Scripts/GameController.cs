@@ -47,6 +47,13 @@ public class GameController : MonoBehaviour
     public GameObject missionskrtskrt;
     public GameObject missionCross;
 
+    public GameObject block1;
+    public GameObject block2;
+    public GameObject block3;
+    public GameObject block4;
+    public GameObject block5;
+
+
     public bool start = false; 
     public bool start2 = false;
     public bool start3 = false;
@@ -569,6 +576,27 @@ public class GameController : MonoBehaviour
             time.text = "00:00:00";
         }
 
+        if (col.GetComponent<Collider>().tag == "wall112")
+        {
+            block1.SetActive(true);
+        }
+
+        if (col.GetComponent<Collider>().tag == "wall113")
+        {
+            block2 .SetActive(true);
+        }
+        if (col.GetComponent<Collider>().tag == "wall114")
+        {
+            block3.SetActive(true);
+        }
+        if (col.GetComponent<Collider>().tag == "wall115")
+        {
+            block4.SetActive(true);
+        }
+        if (col.GetComponent<Collider>().tag == "wall116")
+        {
+            block5.SetActive(true);
+        }
 
     }
 
