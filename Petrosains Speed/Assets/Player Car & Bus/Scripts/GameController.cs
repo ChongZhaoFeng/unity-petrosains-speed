@@ -251,6 +251,10 @@ public class GameController : MonoBehaviour
                 sec1 = 0;
                 min1 += 1;
             }
+            if (sec1 >= 5.2)
+            {
+                wgame = true;
+            }
             milliDisplay = "" + milli1.ToString("F1");
 
             if (sec1 < 10)
@@ -333,6 +337,10 @@ public class GameController : MonoBehaviour
             {
                 sec2 = 0;
                 min2 += 1;
+            }
+            if (sec2 >= 5.2)
+            {
+                wgame = true;
             }
             milliDisplay = "" + milli2.ToString("F1");
 
@@ -417,6 +425,10 @@ public class GameController : MonoBehaviour
                 sec3 = 0;
                 min3 += 1;
             }
+            if (sec3 >= 5.2)
+            {
+                wgame = true;
+            }
             milliDisplay = "" + milli3.ToString("F1");
 
             if (sec3 < 10)
@@ -482,6 +494,10 @@ public class GameController : MonoBehaviour
             {
                 sec4 = 0;
                 min4 += 1;
+            }
+            if (sec4 >= 5.2)
+            {
+                wgame = true;
             }
             milliDisplay = "" + milli4.ToString("F1");
 
