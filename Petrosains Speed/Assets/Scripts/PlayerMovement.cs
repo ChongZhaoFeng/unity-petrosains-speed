@@ -4,8 +4,12 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public CharacterController controller;
+    public GameObject cButton;
+   
 
+
+
+    public CharacterController controller;
     public float speed = 12f;
     public float gravity = -9.81f;
     public Transform groundCheck;
@@ -43,4 +47,12 @@ public class PlayerMovement : MonoBehaviour
     controller.Move(moveDirection * Time.deltaTime);
     }
 
-}
+    void OnTriggerEnter(Collider col)
+    {
+        if (col.GetComponent<Collider>().tag == "trigger0")
+        {
+            cButton.SetActive(true);
+        }
+    }
+
+   }
