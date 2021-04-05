@@ -1,3 +1,3 @@
 # unity-petrosains-speed
 
-This is going to be a very annoying project
+Final Year project on game development for Petrosains
